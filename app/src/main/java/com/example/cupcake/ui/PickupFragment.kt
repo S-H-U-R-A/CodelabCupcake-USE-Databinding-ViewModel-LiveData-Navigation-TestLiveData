@@ -21,24 +21,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.cupcake.databinding.FragmentSummaryBinding
+import androidx.navigation.fragment.findNavController
+import com.example.cupcake.databinding.FragmentPickupBinding
 
 /**
- * [SummaryFragment] contains a summary of the order details with a button to share the order
- * via another app.
+ * [PickupFragment] allows the user to choose a pickup date for the cupcake order.
  */
-class SummaryFragment : Fragment() {
+class PickupFragment : Fragment() {
 
-    // Binding object instance corresponding to the fragment_summary.xml layout
+    // Binding object instance corresponding to the fragment_pickup.xml layout
     // This property is non-null between the onCreateView() and onDestroyView() lifecycle callbacks,
     // when the view hierarchy is attached to the fragment.
-    private var binding: FragmentSummaryBinding? = null
+    private var binding: FragmentPickupBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val fragmentBinding = FragmentSummaryBinding.inflate(inflater, container, false)
+        val fragmentBinding = FragmentPickupBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
     }
@@ -47,15 +47,17 @@ class SummaryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.apply {
-            sendButton.setOnClickListener { sendOrder() }
+            nextButton.setOnClickListener { goToNextScreen() }
         }
     }
 
     /**
-     * Submit the order by sharing out the order details to another app via an implicit intent.
+     * Navigate to the next screen to see the order summary.
      */
-    fun sendOrder() {
-        Toast.makeText(activity, "Send Order", Toast.LENGTH_SHORT).show()
+    private fun goToNextScreen() {
+        Toast.makeText(activity, "Next", Toast.LENGTH_SHORT).show()
+
+        findNavController().navigate( R.id.action_pickupFragment_to_summaryFragment )
     }
 
     /**

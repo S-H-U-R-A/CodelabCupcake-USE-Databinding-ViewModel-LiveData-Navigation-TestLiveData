@@ -21,23 +21,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.cupcake.databinding.FragmentFlavorBinding
+import com.example.cupcake.databinding.FragmentSummaryBinding
 
 /**
- * [FlavorFragment] allows a user to choose a cupcake flavor for the order.
+ * [SummaryFragment] contains a summary of the order details with a button to share the order
+ * via another app.
  */
-class FlavorFragment : Fragment() {
+class SummaryFragment : Fragment() {
 
-    // Binding object instance corresponding to the fragment_flavor.xml layout
+    // Binding object instance corresponding to the fragment_summary.xml layout
     // This property is non-null between the onCreateView() and onDestroyView() lifecycle callbacks,
     // when the view hierarchy is attached to the fragment.
-    private var binding: FragmentFlavorBinding? = null
+    private var binding: FragmentSummaryBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val fragmentBinding = FragmentFlavorBinding.inflate(inflater, container, false)
+        val fragmentBinding = FragmentSummaryBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
     }
@@ -46,15 +47,15 @@ class FlavorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.apply {
-            nextButton.setOnClickListener { goToNextScreen() }
+            sendButton.setOnClickListener { sendOrder() }
         }
     }
 
     /**
-     * Navigate to the next screen to choose pickup date.
+     * Submit the order by sharing out the order details to another app via an implicit intent.
      */
-    fun goToNextScreen() {
-        Toast.makeText(activity, "Next", Toast.LENGTH_SHORT).show()
+    private fun sendOrder() {
+        Toast.makeText(activity, "Send Order", Toast.LENGTH_SHORT).show()
     }
 
     /**
