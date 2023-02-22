@@ -49,8 +49,6 @@ dependencies {
     //VIEWMODEL & LIVEDATA
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-
-
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
 
     //NAVIGATION WITH FRAGMENT
@@ -59,4 +57,9 @@ dependencies {
 
     //MATERIAL DESIGN
     implementation 'com.google.android.material:material:1.4.0'
+
+    //TEST UNITARIOS
+    testImplementation 'junit:junit:4.+'
+    //TEST ARQUITECTURA DE COMPONENTES
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
 }
